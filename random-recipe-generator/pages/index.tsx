@@ -3,8 +3,35 @@ import Head from "next/head";
 import Image from "next/image";
 import Test from "../components/test/test";
 import styles from "../styles/Home.module.css";
+import axios from "axios";
+import { useEffect, useState, useCallback } from "react";
 
 const Home: NextPage = () => {
+  const [recipeList, setRecipeList] = useState([]);
+  const [page, setPage] = useState(1);
+  const [commitHistory, setCommitHistory] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const fetchData = () => {
+    console.log(1, "hello");
+    return axios
+      .get(
+        "https://api.edamam.com/api/recipes/v2?type=public&q=cauliflower&app_id=51f1a3e7&app_key=%2012b2acdd9562c85d636e7d9010e7bea2"
+      )
+      .then((res) => {
+        console.log(10, res.data);
+        return res.data;
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
+  const getRecipes = useCallback(() => {
+    const recipes = fetchData();
+
+    setRecipeList(recipes);
+  }, [recipeList]);
   return (
     <div className={styles.container}>
       <Head>
@@ -16,6 +43,7 @@ const Home: NextPage = () => {
       <main className={styles.main}>
         <h1 className={styles.title}>Random Recipe Generator</h1>
         <Test />
+        <button onClick={getRecipes}>click me for recipes</button>
 
         <p className={styles.description}>
           Get started by editing{" "}
