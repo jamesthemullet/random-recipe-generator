@@ -8,9 +8,6 @@ import { useEffect, useState, useCallback } from "react";
 
 const Home: NextPage = () => {
   const [recipeList, setRecipeList] = useState([]);
-  const [page, setPage] = useState(1);
-  const [commitHistory, setCommitHistory] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
 
   const fetchData = () => {
     console.log(1, "hello");
@@ -42,12 +39,14 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <h1 className={styles.title}>Random Recipe Generator</h1>
-        <Test /><br></br>
+        <Test />
+        <br></br>
         <form>
           <label htmlFor="ingredient">Ingredient:</label>
           <input type="text" id="ingredient" name="ingredient"></input>
-        </form><br></br>
-        
+        </form>
+        <br></br>
+
         <button onClick={getRecipes}>click me for recipes</button>
 
         <p className={styles.description}>
