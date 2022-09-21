@@ -13,7 +13,7 @@ const Home: NextPage = () => {
     console.log(1, "hello");
     return axios
       .get(
-        "https://api.edamam.com/api/recipes/v2?type=public&q=cauliflower&app_id=51f1a3e7&app_key=%2012b2acdd9562c85d636e7d9010e7bea2"
+        "https://api.edamam.com/api/recipes/v2?type=public&q=cauliflower&app_id=51f1a3e7&app_key=%2012b2acdd9562c85d636e7d9010e7bea2&random=true"
       )
       .then((res) => {
         console.log(10, res.data);
