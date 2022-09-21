@@ -39,7 +39,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>Random Recipe Generator</h1>
+        <h1 className={styles.title}>Random Recipe Generator-test</h1>
         <Test />
         <br/>
         <label htmlFor="ingredient">Ingredient:</label>
