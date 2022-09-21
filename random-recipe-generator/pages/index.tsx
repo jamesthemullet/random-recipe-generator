@@ -42,7 +42,12 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <h1 className={styles.title}>Random Recipe Generator</h1>
-        <Test />
+        <Test /><br></br>
+        <form>
+          <label htmlFor="ingredient">Ingredient:</label>
+          <input type="text" id="ingredient" name="ingredient"></input>
+        </form><br></br>
+        
         <button onClick={getRecipes}>click me for recipes</button>
 
         <p className={styles.description}>
