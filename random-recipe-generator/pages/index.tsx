@@ -11,12 +11,13 @@ const Home: NextPage = () => {
   const [page, setPage] = useState(1);
   const [commitHistory, setCommitHistory] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [foodName, setFoodName] = useState('');
 
   const fetchData = () => {
-    console.log(1, "hello");
+    console.log(1, "hello", foodName);
     return axios
       .get(
-        "https://api.edamam.com/api/recipes/v2?type=public&q=cauliflower&app_id=51f1a3e7&app_key=%2012b2acdd9562c85d636e7d9010e7bea2"
+        `https://api.edamam.com/api/recipes/v2?type=public&q=${foodName}&app_id=51f1a3e7&app_key=%2012b2acdd9562c85d636e7d9010e7bea2`
       )
       .then((res) => {
         console.log(10, res.data);
@@ -42,12 +43,11 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <h1 className={styles.title}>Random Recipe Generator</h1>
-        <Test /><br></br>
-        <form>
-          <label htmlFor="ingredient">Ingredient:</label>
-          <input type="text" id="ingredient" name="ingredient"></input>
-        </form><br></br>
-        
+        <Test /><br/>
+
+        <label htmlFor="ingredient">Ingredient:</label>
+        <input type="text" name="ingredient" onChange={e => setFoodName(e.target.value)}/>
+        <br/>
         <button onClick={getRecipes}>click me for recipes</button>
 
         <p className={styles.description}>
@@ -80,7 +80,7 @@ const Home: NextPage = () => {
           >
             <h2>Deploy &rarr;</h2>
             <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
+                Instantly deploy your Next.js site to a public URL with Vercel.
             </p>
           </a>
         </div>
