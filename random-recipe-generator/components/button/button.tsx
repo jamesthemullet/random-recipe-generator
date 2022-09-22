@@ -3,7 +3,7 @@ import type { MouseEventHandler } from "react";
 
 type ButtonProps = {
   text: string;
-  onClick: MouseEventHandler | undefined;
+  onClick?: MouseEventHandler | undefined;
 };
 
 const StyledButton = styled.button`

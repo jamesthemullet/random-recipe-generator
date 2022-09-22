@@ -14,7 +14,36 @@ const Title = styled.h2`
   font-family: "Playfair Display";
 `;
 
-export const ChosenRecipe = ({ props }) => {
+type IngredientsProps = {
+  foodId: string;
+  text: string;
+};
+
+type RecipeProps = {
+  recipe: {
+    label: string;
+    ingredients: IngredientsProps[];
+    totalTime: number;
+    images: {
+      REGULAR: {
+        height: number;
+        width: number;
+        url: string;
+      };
+    };
+    url: string;
+  };
+};
+
+type HitsProps = {
+  hits: RecipeProps[];
+};
+
+type Props = {
+  props: HitsProps;
+};
+
+export const ChosenRecipe = ({ props }: Props) => {
   if (!props || !props.hits || !props.hits[0]) return;
   const { label, ingredients, totalTime, images, url } = props.hits[0].recipe;
   const { url: imageURL, height, width } = images.REGULAR;
