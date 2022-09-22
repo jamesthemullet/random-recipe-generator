@@ -2,22 +2,28 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import Test from "../components/test/test";
+import styled from "@emotion/styled";
+import ChosenRecipe from "../components/chosenRecipe/chosenRecipe";
 import styles from "../styles/Home.module.css";
 import axios from "axios";
 import { useEffect, useState, useCallback } from "react";
 
-const Home: NextPage = () => {
-  const [recipeList, setRecipeList] = useState([]);
-  const [foodName, setFoodName] = useState('');
+const Heading = styled.h1`
+  margin-bottom: 3rem;
+`;
 
-  const fetchData = () => {
+const Home: NextPage = () => {
+  const [recipeList, setRecipeList] = useState(null);
+  const [foodName, setFoodName] = useState("");
+
+  const fetchData = async () => {
     console.log(1, "hello", foodName);
     return axios
       .get(
         `https://api.edamam.com/api/recipes/v2?type=public&q=${foodName}&app_id=51f1a3e7&app_key=%2012b2acdd9562c85d636e7d9010e7bea2&random=true`
       )
       .then((res) => {
-        console.log(10, res.data);
+        console.log(10, res);
         return res.data;
       })
       .catch((err) => {
@@ -25,11 +31,12 @@ const Home: NextPage = () => {
       });
   };
 
-  const getRecipes = useCallback(() => {
-    const recipes = fetchData();
+  const getRecipes = useCallback(async () => {
+    const recipes = await fetchData();
+    console.log(15, recipes);
 
     setRecipeList(recipes);
-  }, [recipeList]);
+  }, [recipeList, foodName]);
   return (
     <div className={styles.container}>
       <Head>
@@ -39,62 +46,19 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>Random Recipe Generator-test</h1>
-        <Test />
-        <br/>
+        <Heading className={styles.title}>Random Recipe Generator-test</Heading>
+
         <label htmlFor="ingredient">Ingredient:</label>
-        <input type="text" name="ingredient" onChange={e => setFoodName(e.target.value)}/>
-        <br/>
+        <input
+          type="text"
+          name="ingredient"
+          onChange={(e) => setFoodName(e.target.value)}
+        />
+        <br />
         <button onClick={getRecipes}>click me for recipes</button>
 
-        <p className={styles.description}>
-          Get started by editing{" "}
-          <code className={styles.code}>pages/index.tsx</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-                Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
+        <ChosenRecipe props={recipeList} />
       </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{" "}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
     </div>
   );
 };
