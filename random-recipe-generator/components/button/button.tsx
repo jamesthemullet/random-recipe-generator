@@ -1,4 +1,10 @@
 import styled from "@emotion/styled";
+import type { MouseEventHandler } from "react";
+
+type ButtonProps = {
+  text: string;
+  onClick: MouseEventHandler | undefined;
+};
 
 const StyledButton = styled.button`
   padding: 10px 20px;
@@ -7,7 +13,7 @@ const StyledButton = styled.button`
   border: 2px solid black;
   font-size: 18px;
   cursor: pointer;
-  font-family: 'Raleway';
+  font-family: "Raleway";
   border-radius: 5%;
 
   &:hover {
@@ -20,7 +26,7 @@ const StyledButton = styled.button`
   }
 `;
 
-const Button = ({ text, onClick }) => {
+const Button = ({ text, onClick }: ButtonProps) => {
   return <StyledButton onClick={onClick}>{text}</StyledButton>;
 };
 
