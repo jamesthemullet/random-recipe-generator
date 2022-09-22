@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import Test from "../components/test/test";
+import Button from "../components/button/button";
 import styled from "@emotion/styled";
 import ChosenRecipe from "../components/chosenRecipe/chosenRecipe";
 import styles from "../styles/Home.module.css";
@@ -14,7 +15,7 @@ const Heading = styled.h1`
 
 const Description = styled.p`
   text-align: center;
-  `;
+`;
 
 const Home: NextPage = () => {
   const [recipeList, setRecipeList] = useState(null);
@@ -52,7 +53,10 @@ const Home: NextPage = () => {
       <main className={styles.main}>
         <Heading className={styles.title}>Random Recipe Generator</Heading>
 
-        <Description>Enter an ingredient below to see a randomly generated recipe containing your ingredient and everything else you need to make it!</Description>
+        <Description>
+          Enter an ingredient below to see a randomly generated recipe
+          containing your ingredient and everything else you need to make it!
+        </Description>
 
         <input
           type="text"
@@ -60,7 +64,7 @@ const Home: NextPage = () => {
           onChange={(e) => setFoodName(e.target.value)}
         />
         <br />
-        <button onClick={getRecipes}>Click me for your recipe</button>
+        <Button onClick={getRecipes} text={"Click me for your recipe"} />
 
         <ChosenRecipe props={recipeList} />
       </main>

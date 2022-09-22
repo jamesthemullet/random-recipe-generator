@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import Image from "next/image";
+import Button from "../button/button";
 
 export const ChosenRecipe = ({ props }) => {
   if (!props || !props.hits || !props.hits[0]) return;
@@ -17,11 +18,9 @@ export const ChosenRecipe = ({ props }) => {
           })}
         </ul>
         {totalTime > 0 && <p>It will take you {totalTime} minutes to make</p>}
-        <button>
-          <a href={url} target="_blank">
-            Full instructions
-          </a>
-        </button>
+        <a href={url} target="_blank">
+          <Button text={"Full instructions"}></Button>
+        </a>
       </>
     );
   } else {
