@@ -80,7 +80,7 @@ const Home: NextPage = () => {
           onChange={(e) => setFoodName(e.target.value)}
         />
         <br />
-        <Button onClick={getRecipes} text={"Click me for your recipe"} />
+        <Button onClick={getRecipes} text={"Generate new recipe"} />
 
         {recipeList && <ChosenRecipe props={recipeList}></ChosenRecipe>}
       </main>
