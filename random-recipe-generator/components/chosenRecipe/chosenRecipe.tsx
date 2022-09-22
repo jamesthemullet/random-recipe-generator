@@ -40,16 +40,17 @@ type HitsProps = {
 };
 
 type Props = {
-  props: HitsProps;
+  props: HitsProps | null;
 };
 
 export const ChosenRecipe = ({ props }: Props) => {
-  if (!props || !props.hits || !props.hits[0]) return;
+  if (!props || !props.hits || !props.hits[0])
+    return <p>Please enter at lease one ingredient</p>;
   const { label, ingredients, totalTime, images, url } = props.hits[0].recipe;
   const { url: imageURL, height, width } = images.REGULAR;
   if (props.hits && props.hits[0]) {
     return (
-      <>
+      <div>
         <Title>
           Your recipe is <b>{label}</b>
         </Title>
@@ -70,7 +71,7 @@ export const ChosenRecipe = ({ props }: Props) => {
         <a href={url} target="_blank" rel="noreferrer">
           <Button text={"Full instructions"}></Button>
         </a>
-      </>
+      </div>
     );
   } else {
     return <StyledParagraph>No recipes for that ingredient</StyledParagraph>;
