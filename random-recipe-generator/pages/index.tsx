@@ -20,7 +20,7 @@ const Description = styled.p`
 `;
 
 const StyledInput = styled.input`
-  font-family: 'Raleway';
+  font-family: "Raleway";
   font-size: 28;
 `;
 
@@ -36,7 +36,6 @@ const Home: NextPage = () => {
         `https://api.edamam.com/api/recipes/v2?type=public&q=${foodName}&app_id=${appId}&app_key=${apiKey}&random=true`
       )
       .then((res) => {
-        console.log(10, res);
         return res.data;
       })
       .catch((err) => {
@@ -46,7 +45,6 @@ const Home: NextPage = () => {
 
   const getRecipes = useCallback(async () => {
     const recipes = await fetchData();
-    console.log(15, recipes);
 
     setRecipeList(recipes);
   }, [recipeList, foodName]);
@@ -77,7 +75,7 @@ const Home: NextPage = () => {
           placeholder="Ingredient"
           onChange={(e) => setFoodName(e.target.value)}
         />
-        <br/>
+        <br />
         <Button onClick={getRecipes} text={"Click me for your recipe"} />
 
         <ChosenRecipe props={recipeList} />
