@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import Image from "next/image";
 import Button from "../button/button";
+import IngredientList from "../ingredientList/ingredientList";
 
 const StyledList = styled.ul`
   font-family: "Raleway";
@@ -60,7 +61,7 @@ export const ChosenRecipe = ({ props }: Props) => {
         </StyledParagraph>
         <StyledList>
           {ingredients.map((item, index) => {
-            return <li key={`${index}${item.foodId}`}>{item.text}</li>;
+            return <IngredientList props={item} key={`${index}${item.foodId}`}></IngredientList>;
           })}
         </StyledList>
         {totalTime > 0 && (
