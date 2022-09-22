@@ -8,6 +8,7 @@ const StyledButton = styled.button`
   font-size: 18px;
   cursor: pointer;
   font-family: 'Raleway';
+  border-radius: 5%;
 
   &:hover {
     background: #e07a5f;

@@ -19,6 +19,11 @@ const Description = styled.p`
   font-size: 20;
 `;
 
+const StyledInput = styled.input`
+  font-family: 'Raleway';
+  font-size: 28;
+`;
+
 const Home: NextPage = () => {
   const [recipeList, setRecipeList] = useState(null);
   const [foodName, setFoodName] = useState("");
@@ -67,12 +72,12 @@ const Home: NextPage = () => {
           containing your ingredient and everything else you need to make it!
         </Description>
 
-        <input
+        <StyledInput
           type="text"
           placeholder="Ingredient"
           onChange={(e) => setFoodName(e.target.value)}
         />
-        <br />
+        <br/>
         <Button onClick={getRecipes} text={"Click me for your recipe"} />
 
         <ChosenRecipe props={recipeList} />
