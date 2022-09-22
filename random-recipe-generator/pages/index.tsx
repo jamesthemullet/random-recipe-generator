@@ -12,6 +12,10 @@ const Heading = styled.h1`
   margin-bottom: 3rem;
 `;
 
+const Description = styled.p`
+  text-align: center;
+  `;
+
 const Home: NextPage = () => {
   const [recipeList, setRecipeList] = useState(null);
   const [foodName, setFoodName] = useState("");
@@ -46,16 +50,17 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <Heading className={styles.title}>Random Recipe Generator-test</Heading>
+        <Heading className={styles.title}>Random Recipe Generator</Heading>
 
-        <label htmlFor="ingredient">Ingredient:</label>
+        <Description>Enter an ingredient below to see a randomly generated recipe containing your ingredient and everything else you need to make it!</Description>
+
         <input
           type="text"
-          name="ingredient"
+          placeholder="Ingredient"
           onChange={(e) => setFoodName(e.target.value)}
         />
         <br />
-        <button onClick={getRecipes}>click me for recipes</button>
+        <button onClick={getRecipes}>Click me for your recipe</button>
 
         <ChosenRecipe props={recipeList} />
       </main>
