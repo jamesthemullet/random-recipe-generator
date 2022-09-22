@@ -2,6 +2,18 @@ import styled from "@emotion/styled";
 import Image from "next/image";
 import Button from "../button/button";
 
+const StyledList = styled.ul`
+  font-family: 'Raleway';
+  `;
+
+const StyledParagraph = styled.p`
+  font-family: 'Raleway';
+  `;
+
+const Title = styled.h2`
+  font-family: 'Playfair Display';
+  `;
+
 export const ChosenRecipe = ({ props }) => {
   if (!props || !props.hits || !props.hits[0]) return;
   const { label, ingredients, totalTime, images, url } = props.hits[0].recipe;
@@ -9,22 +21,22 @@ export const ChosenRecipe = ({ props }) => {
   if (props.hits && props.hits[0]) {
     return (
       <>
-        <p>Your recipe is {label}</p>
+        <Title>Your recipe is <b>{label}</b></Title>
         <Image src={imageURL} height={height} width={width} />
-        <p>You'll need the following ingredients:</p>
-        <ul>
+        <StyledParagraph>You'll need the following ingredients:</StyledParagraph>
+        <StyledList>
           {ingredients.map((item, index) => {
             return <li key={`${index}${item.foodId}`}>{item.text}</li>;
           })}
-        </ul>
-        {totalTime > 0 && <p>It will take you {totalTime} minutes to make</p>}
+        </StyledList>
+        {totalTime > 0 && <StyledParagraph>It will take you {totalTime} minutes to make</StyledParagraph>}
         <a href={url} target="_blank">
           <Button text={"Full instructions"}></Button>
         </a>
       </>
     );
   } else {
-    return <p>No recipes for that ingredient</p>;
+    return <StyledParagraph>No recipes for that ingredient</StyledParagraph>;
   }
 };
 
