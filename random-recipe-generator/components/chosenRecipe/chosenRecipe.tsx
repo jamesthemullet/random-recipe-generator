@@ -24,9 +24,9 @@ export const ChosenRecipe = ({ props }) => {
         <Title>
           Your recipe is <b>{label}</b>
         </Title>
-        <Image src={imageURL} height={height} width={width} />
+        <Image src={imageURL} height={height} width={width} alt={label} />
         <StyledParagraph>
-          You'll need the following ingredients:
+          You will need the following ingredients:
         </StyledParagraph>
         <StyledList>
           {ingredients.map((item, index) => {
