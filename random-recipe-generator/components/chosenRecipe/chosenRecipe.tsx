@@ -50,7 +50,7 @@ export const ChosenRecipe = ({ props }: Props) => {
   const { url: imageURL, height, width } = images.REGULAR;
   if (props.hits && props.hits[0]) {
     return (
-      <div>
+      <>
         <Title>
           Your recipe is <b>{label}</b>
         </Title>
@@ -71,7 +71,7 @@ export const ChosenRecipe = ({ props }: Props) => {
         <a href={url} target="_blank" rel="noreferrer">
           <Button text={"Full instructions"}></Button>
         </a>
-      </div>
+      </>
     );
   } else {
     return <StyledParagraph>No recipes for that ingredient</StyledParagraph>;
