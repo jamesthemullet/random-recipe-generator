@@ -4,8 +4,8 @@ import Button from "../components/button/button";
 import styled from "@emotion/styled";
 import ChosenRecipe from "../components/chosenRecipe/chosenRecipe";
 import styles from "../styles/Home.module.css";
-import axios from "axios";
 import { useState, useCallback } from "react";
+import React from "react";
 
 const Heading = styled.h1`
   margin-bottom: 3rem;
@@ -31,16 +31,18 @@ const Home: NextPage = () => {
   const fetchData = async () => {
     const apiKey = process.env.NEXT_PUBLIC_API_SECRET;
     const appId = process.env.NEXT_PUBLIC_APP_ID;
-    return axios
-      .get(
-        `https://api.edamam.com/api/recipes/v2?type=public&q=${foodName}&app_id=${appId}&app_key=${apiKey}&random=true`
-      )
-      .then((res) => {
-        return res.data;
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    const url = `https://api.edamam.com/api/recipes/v2?type=public&q=${foodName}&app_id=${appId}&app_key=${apiKey}&random=true`;
+
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error("Fetch error:", error);
+    }
   };
 
   const getRecipes = useCallback(async () => {
@@ -48,6 +50,7 @@ const Home: NextPage = () => {
 
     setRecipeList(recipes);
   }, [recipeList, foodName]);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -64,6 +67,18 @@ const Home: NextPage = () => {
           href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Raleway:wght@300&display=swap"
           rel="stylesheet"
         />
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-MJ48MF40NR"
+        ></script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-MJ48MF40NR"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-MJ48MF40NR');
+        </script>
       </Head>
 
       <main className={styles.main}>
