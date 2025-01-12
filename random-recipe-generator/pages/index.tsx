@@ -71,13 +71,17 @@ const Home: NextPage = () => {
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-MJ48MF40NR"
         ></script>
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-MJ48MF40NR"></script>
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-MJ48MF40NR"
+        ></script>
         <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-
-          gtag('config', 'G-MJ48MF40NR');
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-MJ48MF40NR');
+          `}
         </script>
       </Head>
 
