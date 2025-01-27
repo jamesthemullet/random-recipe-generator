@@ -56,6 +56,25 @@ const Home: NextPage = () => {
       <Head>
         <title>Random Recipe Generator</title>
         <meta name="description" content="Random Recipe Generator" />
+        <meta
+          name="keywords"
+          content="random recipe, cooking, food, ingredients"
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta property="og:title" content="Random Recipe Generator" />
+        <meta
+          property="og:description"
+          content="Generate random recipes based on ingredients"
+        />
+        {/* <meta property="og:image" content="/path/to/image.jpg" /> */}
+        <meta property="og:url" content="https://www.randomrecipe.co.uk/" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Random Recipe Generator" />
+        <meta
+          name="twitter:description"
+          content="Generate random recipes based on ingredients"
+        />
+        {/* <meta name="twitter:image" content="/path/to/image.jpg" /> */}
         <link rel="icon" href="/favicon.ico" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
