@@ -1,28 +1,12 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Button from "../components/button/button";
-import styled from "@emotion/styled";
+
 import ChosenRecipe from "../components/chosenRecipe/chosenRecipe";
 import styles from "../styles/Home.module.css";
 import { useState, useCallback } from "react";
 import React from "react";
-
-const Heading = styled.h1`
-  margin-bottom: 3rem;
-  font-family: "Playfair Display";
-  color: #81b29a;
-`;
-
-const Description = styled.p`
-  text-align: center;
-  font-family: "Raleway";
-  font-size: 20;
-`;
-
-const StyledInput = styled.input`
-  font-family: "Raleway";
-  font-size: 28;
-`;
+import Script from "next/script";
 
 const Home: NextPage = () => {
   const [recipeList, setRecipeList] = useState(null);
@@ -61,7 +45,7 @@ const Home: NextPage = () => {
           content="random recipe, cooking, food, ingredients"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta property="og:title" content="Random Recipe Generator" />
+        <meta property="og:title" content="Random Recipe Generator " />
         <meta
           property="og:description"
           content="Generate random recipes based on ingredients"
@@ -77,47 +61,34 @@ const Home: NextPage = () => {
         {/* <meta name="twitter:image" content="/path/to/image.jpg" /> */}
         <link rel="icon" href="/favicon.ico" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="true"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Raleway:wght@300&display=swap"
-          rel="stylesheet"
-        />
-        <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-MJ48MF40NR"
-        ></script>
-        <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-MJ48MF40NR"
-        ></script>
-        <script>
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-MJ48MF40NR');
-          `}
-        </script>
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3090319297502193"
-          crossOrigin="anonymous"
-        ></script>
       </Head>
+      <Script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-MJ48MF40NR"
+      ></Script>
+      <Script id="google-analytics" strategy="lazyOnload">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-MJ48MF40NR');
+        `}
+      </Script>
+      <Script
+        async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3090319297502193"
+        crossOrigin="anonymous"
+      ></Script>
 
       <main className={styles.main}>
-        <Heading className={styles.title}>Random Recipe Generator</Heading>
+        <h1 className={styles.title}>Random Recipe Generator</h1>
 
-        <Description>
+        <p>
           Enter an ingredient below to see a randomly generated recipe
           containing your ingredient and everything else you need to make it!
-        </Description>
+        </p>
 
-        <StyledInput
+        <input
           type="text"
           placeholder="Ingredient"
           onChange={(e) => setFoodName(e.target.value)}
