@@ -61,6 +61,7 @@ const Home: NextPage = () => {
         {/* <meta name="twitter:image" content="/path/to/image.jpg" /> */}
         <link rel="icon" href="/favicon.ico" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="canonical" href="https://www.randomrecipe.co.uk/" />
       </Head>
       <Script
         async
